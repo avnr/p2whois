@@ -67,8 +67,8 @@ In order to prevent leeching of your servers running p2whois, and possibly overl
 the Prefix WhoIs servers (or your pwhois servers if you run a mirror), the `p2whois` application implements a CORS
 policy. The policy is set in the value of `ORIGINS`. By default `ORIGINS = []`, meaning that any domain
 can query the `p2whois` server. If you set `ORIGINS` to a list of origins (i.e., hosts and ports), only those
-listed origins will be served by the application. For example, `ORIGINS = [ 'mysite.com' ]` will only serve requests
-that originate from `mysite.com` and will reject all other requests with a 403 HTTP status.
+listed origins will be served by the application. For example, `ORIGINS = [ 'http://mysite.com' ]` will only serve
+requests that originate from `http://mysite.com` and will reject all other requests with a 403 HTTP status.
 
 Note that CORS does not secure the application and does not prevent servers from querying it, only browsers.
 
@@ -105,7 +105,9 @@ To change the default settings use the `conf` function:
     import p2whois
     
     p2whois.conf(
-        origins = [ 'mywebhost.com', 'www.mywebhost.com' ],
+        origins = [
+            'http://mywebhost.com', 'http://www.mywebhost.com',
+            'https://mywebhost.com', 'https://www.mywebhost.com' ],
         pwhois_server = 'pwhois.mymirror.net',
         pwhois_port = 4300 )
     
