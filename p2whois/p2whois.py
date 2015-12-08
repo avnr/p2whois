@@ -52,6 +52,9 @@ PWHOIS_PORT = 43                    # Port for whois query
 # THIS FUNCTION IS NOT THREAD-SAFE, CALL BEFORE FIRING THE FIRST THREAD
 #
 def conf( origins = ORIGINS, pwhois_server = PWHOIS_SERVER, pwhois_port = PWHOIS_PORT ):
+    global ORIGINS
+    global PWHOIS_SERVER
+    global PWHOIS_PORT
     ORIGINS = origins
     PWHOIS_SERVER = pwhois_server
     PWHOIS_PORT = pwhois_port
