@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+    <script>
+        // The URL of the p2whois server - CHANGE TO YOUR SERVER
+        URL = 'https://p2whois-avnr.rhcloud.com/'
+
+        // Small helper for picking elements and assigning event handlers
+        function $(s){a=[];b=document.querySelectorAll(s);for(i=0;i<b.length;a.push(b[i++]));a.on=function(e,f){for(i=0;i<a.length;a[i++].addEventListener(e,f));return a};return a}
+
+        // The AJAX query
+        function query_p2whois( ip, cb ) {
+            var request = new XMLHttpRequest(), READY = 4
+            request. open( 'GET', URL + ip )
+            request. onreadystatechange = function( e ) {
+                if( READY == request. readyState )
+                    cb( request. response )
+            }
+            request. send()
+        }
+
+        // Convert result to pretty-printed JSON
+        function formatter( json_string ) {
+            return JSON. stringify( JSON. parse( json_string ), null, 4 )
+        }
+
+        // Make the callback that will update the page with returned results
+        function displayer_factory( element ) {
+            return function( content ) {
+                $( element )[ 0 ]. innerHTML = formatter( content )
+            }
+        }
+
+        // Handle form submits
+        function query_form( e ) {
+            e. preventDefault()
+            $( '#result' )[ 0 ]. innerHTML = '...please wait...'
+            query_p2whois( $( '#query' )[ 0 ]. value, displayer_factory( '#result' ))
+        }
+
+        // Attach the script to the query form
+        window. addEventListener( 'load', function() {
+            $( 'form' ). on( 'submit', query_form )
+        })
+    </script>
+</head>
+<body>
+    <h3>p2whois (Proxy to Prefix WhoIs)</h3>
+    <p>
+        This page demonstrates how to retrieve <a href=http://pwhois.org target=_blank>Prefix WhoIs</a> results for a given IP
+        in JSON format from a <a href=https://github.com/avnr/p2whois target=_blank>p2whois server</a>. FYI, the demo server that serves 
+        results for this page is not configured for production purposes, its availability and api spec may change without notice, and it's CORS
+        policy is likely to prevent you from accessing it from most domains.
+    </p>
+    <p>
+        p2whois is NOT affiliated with Prefix WhoIs (I'm just a happy user). By using p2whois you undertake to comply with the Prefix WhoIs license
+        regarding the data, in addition to the p2whois software license.
+    </p>
+    <p>
+        For more detailed information kindly consult the <a href=https://github.com/avnr/p2whois target=_blank>p2whois GitHub repository</a>.
+    </p>
+    <br>
+    <form>
+        <label>Enter IP Address: <input id=query autofocus></label><input type=submit>
+    </form>
+    <small>Submit blank for info on your current IP address</small>
+    <p>IP address info:
+    <pre id=result>...</pre>
+    <p>
+    <small>The backend demo server runs under:</small>
+    <br>
+    <a href=http://openshift.com target=_blank><img src=https://www.openshift.com/images/logos/openshift_online.png style=height:2em alt="Openshift Online by Red Hat"></a>
+    <style>
+        body {
+            max-width: 800px
+        }
+    </style>
+    <a href=https://github.com/avnr/p2whois><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+    <p>
+        <small>Copyright &copy; 2015 Avner Herskovits, All Rights Reserved</small>
+    </p>
+    <style>
+        body {
+          color: #404040;
+          font-family: "Helvetica Neue",Helvetica,"Liberation Sans",Arial,sans-serif;
+          font-size: 14px;
+          line-height: 1.4;
+        }
+
+        html {
+          font-family: sans-serif;
+          -ms-text-size-adjust: 100%;
+          -webkit-text-size-adjust: 100%;
+        }
+    </style>
+</body>
+</html>
