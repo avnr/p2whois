@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-#    p2whois version 0.4 - Proxy to Prefix WhoIs
+#    p2whois version 0.5 - Proxy to Prefix WhoIs
 #    Copyright (c) 2015 Avner Herskovits
 #
 #    For documentation please refer to the accompanying README.md file.

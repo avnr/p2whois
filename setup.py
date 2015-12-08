@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name = 'p2whois',
     packages = ['p2whois'],
-    version = '0.4',
+    version = '0.5',
     description = 'Proxy to Prefix WhoIs',
     author = 'Avner Herskovits',
     author_email = 'avnr_ at outlook.com',
