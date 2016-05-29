@@ -17,7 +17,7 @@ to be routed to the nearest pwhois mirror. You can change the whois server addre
 
 A demo p2whois server is currently deployed at <https://p2whois-avnr.rhcloud.com> (accesible ONLY via [The Demo Page](http://htmlpreview.github.io/?https://raw.github.com/avnr/p2whois/master/example/index.html)).
 This server is NOT configured for production purposes and its CORS policy will prevent queries from
-all domains except the demo page. [See more about CORS](#CORS) below. The `p2whois` package has an
+all domains except the demo page. See more about CORS below. The `p2whois` package has an
 `example` directory with the demo web page that queries the demo p2whois. [View this demo page here
 ](http://htmlpreview.github.io/?https://raw.github.com/avnr/p2whois/master/example/index.html).
 
