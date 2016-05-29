@@ -120,8 +120,8 @@ To change the default settings use the `conf` function:
 All arguments of the `conf` function are optional. THE `Conf` FUNCTION IS NOT THREAD-SAFE, CALL IT
 BEFORE FIRING THE FIRST THREAD.
 
-*IF YOU WOULD LIKE ME TO ASSIST IN SETTING UP `p2whois` or a `pwhois` server please contact me at
-`avnr_` at `outlook.com`.*
+IF YOU WOULD LIKE ME TO ASSIST IN SETTING UP `p2whois` or a `pwhois` server please contact me at
+*`avnr_` at `outlook.com`*.
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=4UBXPG5PBJ76J)
 Your financial support of the project will be highly appreciated.
