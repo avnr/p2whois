@@ -1,21 +1,23 @@
-p2whois - Proxy to Prefix WhoIs
+p2whois - RESTful Proxy to Prefix WhoIs
 ===
 
 The `p2whois` package lets browser-based clients query ip addresses on [Prefix WhoIs][pwhois],
 a.k.a. pwhois. [Prefix WhoIs][pwhois] provides useful GeoIP and IP routing information, however,
 its interface uses the whois protocol which is not available in browsers. So here is `p2whois`, a
-WSGI application that serves as a proxy between the web client and the pwhois whois server.
+WSGI application that serves as a RESTful proxy between the web client and the pwhois whois server.
 `p2whois` accepts a query via an HTTP GET request, queries a pwhois server, and returns the pwhoise
 response formatted JSON-RPC style.
 
 Please note that I'm not affiliated with Prefix WhoIs, I'm just a happy user of their service. To use
-`p2whois` you must comply with the license terms of Prefix WhoIs, which can be found in their [web site][pwhois].
+`p2whois` you must comply with the license terms of Prefix WhoIs, which can be found in their [web
+site][pwhois].
 
 By default `pwhois` queries the whois server whose address is whois.pwhois.org, which is supposed
 to be routed to the nearest pwhois mirror. You can change the whois server address by calling the
 `conf` function as described below.
 
-A demo p2whois server is currently deployed at <https://p2whois-avnr.rhcloud.com> (accesible ONLY via [The Demo Page](http://htmlpreview.github.io/?https://raw.github.com/avnr/p2whois/master/example/index.html)).
+A demo p2whois server is currently deployed at <https://p2whois-avnr.rhcloud.com> (accesible ONLY via [The
+Demo Page](http://htmlpreview.github.io/?https://raw.github.com/avnr/p2whois/master/example/index.html)).
 This server is NOT configured for production purposes and its CORS policy will prevent queries from
 all domains except the demo page. See more about CORS below. The `p2whois` package has an
 `example` directory with the demo web page that queries the demo p2whois. [View this demo page here
@@ -66,11 +68,12 @@ CORS
 
 In order to prevent leeching of your servers running p2whois, and possibly overloading under your
 identity the Prefix WhoIs servers (or your pwhois servers if you run a mirror), the `p2whois`
-application implements a CORS policy. The policy is set in the value of `ORIGINS`. By default
-`ORIGINS = []`, meaning that any domain can query the `p2whois` server. If you set `ORIGINS` to a
-list of origins (i.e., hosts and ports), only those listed origins will be served by the
-application. For example, `ORIGINS = [ 'http://mysite.com' ]` will only serve requests that
-originate from `http://mysite.com` and will reject all other requests with a 403 HTTP status.
+application implements a CORS policy. The policy is set in a list of origins. By default
+`ORIGINS = []`, meaning that any domain can query the `p2whois` server. If you set the list of origins
+(with the `conf` function as described below) to a list of specific origins (i.e., hosts and ports),
+only those listed origins will be served by the application. For example, `[ 'http://mysite.com' ]`
+will only serve requests that originate from `http://mysite.com` and will reject all other requests
+with a 403 HTTP status.
 
 Note that CORS does not secure the application and does not prevent servers from querying it, only
 browsers.
